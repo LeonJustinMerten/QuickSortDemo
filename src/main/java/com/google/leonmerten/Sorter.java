@@ -19,7 +19,7 @@ class Sorter<T extends Comparable<? super T>> {
 
     private int partition(T[] array, int a, int b, boolean performance) {
         if(performance)
-             swap(array,getPivot(b),b);
+             swap(array,a+getPivot(a,b),b);
         T pivot = array[b];
         int i = (a - 1);
         for (int n = a; n <= b - 1; n++)
@@ -37,7 +37,7 @@ class Sorter<T extends Comparable<? super T>> {
         array[b] = temp;
     }
 
-    private int getPivot(int b) {
-        return RANDOM.nextInt(b);
+    private int getPivot(int a, int b) {
+        return RANDOM.nextInt(b-a);
     }
 }
