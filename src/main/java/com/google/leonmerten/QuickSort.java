@@ -1,7 +1,6 @@
 package com.google.leonmerten;
 
 import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
@@ -11,7 +10,6 @@ import static java.lang.System.*;
 public class QuickSort {
     public static void main(String... args) {
         Scanner s = new Scanner(in);
-        Random random = new Random();
         int bound = 19999999;
 
         while(true) {
@@ -20,20 +18,19 @@ public class QuickSort {
             String[] parserArray = s.nextLine().split(",");
             try {
                 Sorter<Integer> sorter = new Sorter<>();
-                
+
                 Integer[] workArray = Arrays.stream(parserArray).map(Integer::parseInt).toArray(Integer[]::new);
                 long l = currentTimeMillis();
-                IntStream.range(0, bound).forEach(i -> sorter.sort(workArray));
+                IntStream.range(0, bound).forEach(i -> sorter.sort(workArray, false));
                 l=currentTimeMillis()-l;
 
-                out.println(l);
-                out.println(String.format(
-                        "Laufzeit: %sm:%ss:%sms",
+                out.format(
+                        "Laufzeit: %sm:%ss:%sms\n",
                         TimeUnit.MILLISECONDS.toMinutes(l)%6,
                         TimeUnit.MILLISECONDS.toSeconds(l)%60,
-                        TimeUnit.MILLISECONDS.toMillis(l)%1000));
+                        TimeUnit.MILLISECONDS.toMillis(l)%1000);
                 out.println("Sortiertes Array: ");
-                //Arrays.stream(workArray).map(i -> "| " + i + " ").forEach(out::print);
+                Arrays.stream(workArray).map(i -> "| " + i + " ").forEach(out::print);
                 out.println("|");
             } catch (NumberFormatException e) {
                 out.println("Es scheint, als hast du einen unerlaubten Charakter eingegeben," +
@@ -41,7 +38,6 @@ public class QuickSort {
             } finally {
                 out.print("\n");
             }
-            //9538ms
         }
     }
 }
