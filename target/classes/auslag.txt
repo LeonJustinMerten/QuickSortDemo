@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+        Scanner s = new Scanner(in);
+
+        while(true) {
+
+            out.println("Welche List an Integers moechten Sie sortieren?");
+
+            String[] array = s.nextLine().split(",");
+            try {
+                Integer[] workArray = new Integer[9999];
+                boolean boost = false;
+                /*
+
+
+
+                for (int i = 0; i < array.length; i++) {
+                    workArray[i] = Integer.parseInt(array[i]);
+                }*/
+                Random r = new Random();
+                for (int i = 0; i < 9999; i++) {
+                    workArray[i]=r.nextInt(2000000);
+                }
+
+                Sorter<Integer> sorter = new Sorter<>();
+                if(!ArrayUtils.isSorted(workArray))
+                    boost = true;
+
+                out.println("Sorting");
+                long l = currentTimeMillis();
+                sorter.sort(workArray, boost);
+                out.println("Laufzeit: " + (currentTimeMillis() - l) + " ms");
+                out.println("Sortiertes Array: ");
+                Arrays.stream(workArray).map(i -> "| " + i + " ").forEach(out::print);
+                out.println("|");
+            } catch (NumberFormatException e) {
+                out.println("Es scheint, als hast du einen unerlaubten Charakter eingegeben," +
+                        " Bitte versuche es nochmal! :(");
+            }
+        }
+        //1,3s
+    }
