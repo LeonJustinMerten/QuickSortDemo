@@ -21,7 +21,7 @@ public class QuickSort {
 
                 Integer[] workArray = Arrays.stream(parserArray).map(Integer::parseInt).toArray(Integer[]::new);
                 long l = currentTimeMillis();
-                IntStream.range(0, bound).forEach(i -> sorter.sort(workArray, false));
+                IntStream.range(0, bound).forEach(i -> sorter.sort(workArray));
                 l=currentTimeMillis()-l;
 
                 out.format(

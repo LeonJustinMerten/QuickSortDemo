@@ -5,6 +5,10 @@ import java.util.Random;
 class Sorter<T extends Comparable<? super T>> {
     private final Random RANDOM = new Random();
 
+    void sort(T[] array) {
+        sort(array, false);
+    }
+
     void sort(T[] array, boolean performance) {
         sort(array, 0, array.length - 1, performance);
     }
@@ -37,7 +41,6 @@ class Sorter<T extends Comparable<? super T>> {
         array[b] = temp;
     }
 
-    @Deprecated
     private int getPivot(int a, int b) {
         return RANDOM.nextInt(b-a);
     }
